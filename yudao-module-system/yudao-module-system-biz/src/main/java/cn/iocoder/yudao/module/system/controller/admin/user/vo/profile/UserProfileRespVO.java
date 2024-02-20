@@ -1,13 +1,13 @@
 package cn.iocoder.yudao.module.system.controller.admin.user.vo.profile;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import cn.iocoder.yudao.module.system.controller.admin.dept.vo.dept.DeptSimpleRespVO;
 import cn.iocoder.yudao.module.system.controller.admin.dept.vo.post.PostSimpleRespVO;
 import cn.iocoder.yudao.module.system.controller.admin.permission.vo.role.RoleSimpleRespVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @Schema(description = "管理后台 - 用户个人中心信息 Response VO")
@@ -18,6 +18,9 @@ public class UserProfileRespVO {
 
     @Schema(description = "用户账号", requiredMode = Schema.RequiredMode.REQUIRED, example = "yudao")
     private String username;
+
+    @Schema(description = "用户昵称")
+    private String name;
 
     @Schema(description = "用户昵称", requiredMode = Schema.RequiredMode.REQUIRED, example = "芋艿")
     private String nickname;
@@ -47,14 +50,17 @@ public class UserProfileRespVO {
      * 所属角色
      */
     private List<RoleSimpleRespVO> roles;
+
     /**
      * 所在部门
      */
     private DeptSimpleRespVO dept;
+
     /**
      * 所属岗位数组
      */
     private List<PostSimpleRespVO> posts;
+
     /**
      * 社交用户数组
      */

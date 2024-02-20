@@ -1,14 +1,20 @@
 package cn.iocoder.yudao.module.system.controller.admin.user.vo.user;
 
-import cn.hutool.core.util.ObjectUtil;
-import cn.iocoder.yudao.framework.common.validation.Mobile;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import java.util.Set;
+
 import org.hibernate.validator.constraints.Length;
 
-import jakarta.validation.constraints.*;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import cn.hutool.core.util.ObjectUtil;
+import cn.iocoder.yudao.framework.common.validation.Mobile;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 @Schema(description = "管理后台 - 用户创建/修改 Request VO")
 @Data
@@ -22,6 +28,10 @@ public class UserSaveReqVO {
     @Pattern(regexp = "^[a-zA-Z0-9]{4,30}$", message = "用户账号由 数字、字母 组成")
     @Size(min = 4, max = 30, message = "用户账号长度为 4-30 个字符")
     private String username;
+
+    @Schema(description = "用户姓名", example = "1024")
+    @Size(max = 255)
+    private String name;
 
     @Schema(description = "用户昵称", requiredMode = Schema.RequiredMode.REQUIRED, example = "芋艿")
     @Size(max = 30, message = "用户昵称长度不能超过30个字符")
